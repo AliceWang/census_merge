@@ -1,0 +1,29 @@
+This US Census shapefile/population data merging program is
+Copyright (C) 2009 Joshua Justice, licensed under the GNU GPL.
+
+To use this program, there are two options.
+
+One is batch merging of all shapefiles/population data files-
+with or without racial demographics data-
+in order to simplify working on all states at once for some later use.
+
+This is done by downloading and unzipping all the relevant files from the US Census website:
+http://www2.census.gov/cgi-bin/shapefiles/national-files
+for the shape files. Each state should be in its own folder after unzipping.
+http://ftp2.census.gov/census_2000/datasets/redistricting_file--pl_94-171/
+for the population files, preserving the existing directory structure and unzipping there.
+Bash syntax to do this is to cd to the directory containing all state files, then:
+    ls | while read dir; do cd $dir; unzip \*.zip; cd ..; done 
+
+Once that is done, simply run the .jar file with the VM size increased
+(so that there will be enough space to operate on whole states).
+As an example:
+    java -jar Merger.jar -Xms1g -Xmx4g
+This sets the minimum VM size to 1 gigabyte and the maximum to 4 gigabytes.
+If this is not enough, increase the maximum size.
+
+If you wish to only merge one state or even just a county,
+there is currently no way to do that without using this as a library.
+
+For information on that, see the Javadoc.
+
